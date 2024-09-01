@@ -22,8 +22,8 @@ jobs:
       - name: Install and check with black, pylint and pontos.version
         uses: greenbone/actions/lint-python@v3
         with:
-          packages: <FIXME>
-          linter: ruff
+          packages: diem
+          linter: ruff check
           python-version: ${{ matrix.python-version }}
 
   test:

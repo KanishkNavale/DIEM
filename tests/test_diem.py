@@ -16,3 +16,7 @@ class TestDiem(unittest.TestCase):
         most_similar = torch.argmin(result, dim=0)
 
         self.assertEqual(most_similar, pick_index)
+
+
+if __name__ == "__main__":
+    unittest.main()

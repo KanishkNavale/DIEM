@@ -17,8 +17,6 @@ on:
         type: string
         description: Set an explicit version, that will overwrite release-type. Fails if version is not compliant.
 
-# don't run two release processes at the same time
-# but also don't cancel already running workflow because it might already be to late
 concurrency:
   group: ${{ github.workflow }}
 

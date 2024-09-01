@@ -1,15 +1,14 @@
 [tool.poetry]
-name = "example"                                      # FIXME
+name = "DIEM"
 version = "0.0.1"
 description = "A GitHub Template for Python Projects"
-authors = ["Greenbone <info@greenbone.net>"]
+authors = ["Kanishk Navale <navalekanishk@gmail.com>"]
 license = "AGPL-3.0-or-later"
 readme = "README.md"
 
 classifiers = [
-  # Full list: https://pypi.org/pypi?%3Aaction=list_classifiers
   "Development Status :: 4 - Beta",
-  "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)", # pylint: disable=line-too-long
+  "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
   "Environment :: Console",
   "Intended Audience :: Developers",
   "Programming Language :: Python :: 3.9",
@@ -20,14 +19,12 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
-packages = [
-  { include = "example" },
-  { include = "tests", format = "sdist" },
-] # FIXME
+packages = [{ include = "diem" }]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 shtab = ">=1.6.5"
+torch = "^2.4.0"
 
 [tool.poetry.group.dev.dependencies]
 pontos = ">=22.10.0"
@@ -61,25 +58,23 @@ pre-commit = [
 ]
 
 [tool.pontos.version]
-version-module-file = "example/__version__.py" # FIXME
+version-module-file = "diem/__version__.py"
 
 [tool.ruff]
 line-length = 80
 target-version = "py39"
 extend-select = ["I", "PLE", "PLW"]
 
-[tool.poetry.scripts]
-example-app = 'example:main' # FIXME
 
 [tool.mypy]
-files = "example"             # FIXME
+files = "diem"
 ignore_missing_imports = true
 explicit_package_bases = true
 
 [tool.coverage.run]
 branch = true
-omit = ["tests/*", "*/__init__.py"]
-source = ["example"]                # FIXME
+omit = ["*/__init__.py"]
+source = ["diem"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

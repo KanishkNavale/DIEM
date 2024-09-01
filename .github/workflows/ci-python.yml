@@ -61,26 +61,3 @@ jobs:
         uses: greenbone/actions/mypy-python@v3
         with:
           python-version: ${{ matrix.python-version }}
-
-  codecov:
-    name: Upload coverage to codecov.io
-    needs: test
-    runs-on: "ubuntu-latest"
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install and calculate and upload coverage to codecov.io
-        uses: greenbone/actions/coverage-python@v3
-        with:
-          python-version: "3.10"
-
-  build-docs:
-    name: Build the documentation
-    runs-on: "ubuntu-latest"
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install python, poetry and dependencies
-        uses: greenbone/actions/poetry@v3
-        with:
-          python-version: "3.10"
-      - name: Build docs
-        run: cd docs && poetry run make html

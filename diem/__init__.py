@@ -30,6 +30,6 @@ def DIEM(source: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
     euclidean_dist = torch.cdist(source, target, p=2)
 
     expected_value = math.sqrt(D / 6) * (v_max - v_min)
-    variance = (D / 6) * ((v_max - v_min) ** 2) / 3.0
+    variance = torch.var(euclidean_dist)
 
     return (v_max - v_min) / variance * (euclidean_dist - expected_value)

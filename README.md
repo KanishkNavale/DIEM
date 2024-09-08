@@ -9,6 +9,8 @@ Note: Please cite the original paper.
 
 ## Development
 
+Please feel free to suggest code & math fixes if found.
+
 ```bash
 make all
 ```

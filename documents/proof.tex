@@ -1,0 +1,100 @@
+\documentclass{article}
+
+\usepackage{geometry}
+   \geometry{
+      a4paper,
+      left=20mm,
+      top=20mm,
+ }
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{Euclidean Distance:\linebreak Expectation, Variance, and Standard Deviation}
+\author{Kanishk Navale (navalekanishk@gmail.com)}
+\date{SEP. 08, 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Euclidean Distance}
+\begin{equation}
+    D(\mathbf{X}, \mathbf{Y}) = \vert\vert \mathbf{X} - \mathbf{Y} \vert\vert_2 = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2},
+\end{equation}
+
+where,
+\begin{itemize}
+    \item $\mathbf{X}, \mathbf{Y} \in \mathbb{R}^n$ are two vectors in range $(a, b), a << b$.
+    \item $D \in \mathbb{R}$ is the Euclidean distance between $\mathbf{X}$ and $\mathbf{Y}$.
+\end{itemize}
+
+\section{Derivation of Expectation}
+To compute the expectation of the Euclidean distance $D(\mathbf{X}, \mathbf{Y})$, we first calculate the expected value of the square of the distance.
+
+\subsection{Expected Squared Difference for One Dimension}
+For each component $x_i \in \mathbf{X}_{i=1, \dots, n}$ and $y_i \in \mathbf{Y}_{i=1, \dots, n}$, the expectation of the square of the difference uniformly distributed over $(a, b)$ is:
+\begin{equation}
+    \mathbb{E}[(x_i - y_i)^2] = \frac{(b - a)^2}{6} \in \mathbb{R}
+\end{equation}
+
+
+\subsection{Expected Squared Euclidean Distance}
+As the squared Euclidean distance is the sum of the squared differences over all $n$ dimensions, its expectation is:
+\begin{equation}
+    \mathbb{E}[D(\mathbf{X}, \mathbf{Y})^2] = n \cdot \frac{(b - a)^2}{6} \in \mathbb{R}
+\end{equation}
+
+
+\subsection{Expected Euclidean Distance}
+Taking the square root of the expected squared distance, the expectation of the Euclidean distance is as follows:
+\begin{equation}
+    \mathbb{E}[D(\mathbf{X}, \mathbf{Y})] = \sqrt{\frac{n}{6}} \cdot (b - a) \in \mathbb{R}
+\end{equation}
+
+\pagebreak
+
+\section{Derivation of Variance}
+The variance of the Euclidean distance $D(\mathbf{X}, \mathbf{Y})$ is obtained by first calculating the variance of the squared Euclidean distance.
+
+\subsection{Variance of the Squared Difference}
+The variance of the squared difference $(x_i - y_i)^2$ is given by:
+\begin{equation}
+    \text{Var}[(x_i - y_i)^2] = \mathbb{E}[(x_i - y_i)^4] - \left(\mathbb{E}[(x_i - y_i)^2]\right)^2
+\end{equation}
+
+For uniformly distributed $x_i$ and $y_i$ over $(a, b)$, we have:
+\begin{equation}
+    \mathbb{E}[(x_i - y_i)^4] = \frac{(b - a)^4}{5} \in \mathbb{R}
+\end{equation}
+
+Thus, the variance of $(x_i - y_i)^2$ is:
+\begin{equation}
+    \text{Var}[(x_i - y_i)^2] = (b - a)^4 \left(\frac{1}{5} - \frac{1}{36}\right) = (b - a)^4 \cdot \frac{31}{180} \in \mathbb{R}
+\end{equation}
+
+\subsection{Variance of the Squared Euclidean Distance}
+The squared Euclidean distance is the sum of the squared differences across all $n$ dimensions, so its variance is:
+\begin{equation}
+    \text{Var}[D(\mathbf{X}, \mathbf{Y})^2] = n \cdot (b - a)^4 \cdot \frac{31}{180} \in \mathbb{R}
+\end{equation}
+
+\section{Derivation of Standard Deviation}
+Finally, the variance of the Euclidean distance $D(\mathbf{x}, \mathbf{y})$ can be approximated using the delta method:
+\begin{equation}
+    \text{Var}[D(\mathbf{X}, \mathbf{Y})] \approx \frac{1}{4} \cdot \frac{\text{Var}[D(\mathbf{X}, \mathbf{Y})^2]}{\mathbb{E}[D(\mathbf{X}, \mathbf{Y})^2]}
+\end{equation}
+We know that:
+\begin{equation}
+    \mathbb{E}[D(\mathbf{X}, \mathbf{Y})^2] = n \cdot \frac{(b - a)^2}{6} \in \mathbb{R}
+\end{equation}
+Substituting, we get:
+\begin{equation}
+    \text{Var}[D(\mathbf{X}, \mathbf{Y})] = \frac{31}{120} \cdot (b - a)^2 \in \mathbb{R}
+\end{equation}
+
+Therefore, the standard deviation is:
+\begin{equation}
+    \sigma(n) = \sqrt{\frac{31}{120}} \cdot (b - a) \approx 0.507 \cdot (b - a) \in \mathbb{R}
+\end{equation}
+
+\end{document}

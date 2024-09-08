@@ -12,3 +12,11 @@ Note: Please cite the original paper.
 ```bash
 make all
 ```
+
+## Proof
+
+For the full proof refer: [Euclidean Distance: Expectation, Variance & Std. Deviation](documents/proof.pdf)
+
+- The missing term `\sigma(n)^2` in the equation DIEM presented in the paper:
+
+    ![missing sigma](documents/sigma.png)

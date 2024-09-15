@@ -23,17 +23,28 @@ def DIEM(
 
     Returns:
         torch.Tensor: The DIEM distance between the source and target tensors of shape (N, M).
-
     """
     if source.size(1) != target.size(1):
         raise ValueError(
             "The source and target tensors must have the same dimension."
         )
+
+    # N is the dimensionality of the vectors
     N = source.size(1)
 
+    # Calculate Euclidean distance between the source and target
     euclidean_dist = torch.cdist(source, target, p=2)
 
-    expected_value = math.sqrt(N / 6.0) * (v_max - v_min)
-    variance = N * (31.0 / 180.0) * (v_max - v_min) ** 4
+    # Expected value for the Euclidean distance in high dimensions
+    expected_value = (v_max - v_min) * math.sqrt(2 * N / math.pi)
 
-    return (v_max - v_min) / variance * (euclidean_dist - expected_value)
+    # Variance for the Euclidean distance in high dimensions
+    variance = (v_max - v_min) ** 2 / N * (1 - 2 / math.pi)
+
+    # Standard deviation is the square root of variance
+    std_dev = math.sqrt(variance)
+
+    # Compute the normalized DIEM distance
+    diem_distance = (euclidean_dist - expected_value) / std_dev
+
+    return diem_distance

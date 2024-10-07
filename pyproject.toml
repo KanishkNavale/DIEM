@@ -24,8 +24,8 @@ packages = [{ include = "diem" }]
 [tool.poetry.dependencies]
 python = "^3.9"
 shtab = ">=1.6.5"
-torch = "^2.4.0"
-numpy = "1.26.4"
+torch = "^2.4.1"
+numpy = "2.0.2"
 
 [tool.poetry.group.dev.dependencies]
 pontos = ">=22.10.0"
